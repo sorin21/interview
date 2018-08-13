@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Inheritance Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <script>
+    /* 
+      Toate obiectele in Javascript mostenesc  proprietati  si metode  de la un prototype.
+      Obiectele Date mostenesc de la Date.prototype, obiectele Array  mostenesc de la Array.prototype.
+     */
+    function Mother() {
+      this.canSwim = function() {
+        console.log('yes');
+      }
+    }
+
+    function Son() {};
+
+    Son.prototype = new Mother();
+    Son.prototype.canRun = function() {
+      console.log('yes');
+    }
+
+    function Grandson() {
+      this.name = "Alex";
+    };
+    Grandson.prototype = new Son();
+    Grandson.prototype.playPiano = function() {
+      console.log('no');
+    }
+    Grandson.prototype.printName = function() {
+      console.log("Grandson's name is " + this.name);
+    }
+
+    var grandson = new Grandson();
+    grandson.canSwim();
+    grandson.canRun();
+    grandson.playPiano();
+    grandson.printName();
+
+
+
+
+
+
+    ////////// 2nd option //////////
+
+    const inheritsFrom = function(child, parent) {
+      child.prototype = Object.create(parent.prototype);
+    }
+
+    function Dog() {
+      this.name = 'Azorel';
+      this.canDance = function() {
+        console.log('yes');
+      }
+    }
+    
+    inheritsFrom(Dog, Grandson);
+
+    Dog.prototype.printName = function() {
+      // Grandson.prototype.printName.call(this);
+      console.log("Dog's name is " + this.name);
+    }
+
+    const dog = new Dog();
+    dog.canDance();
+    dog.canRun();
+    dog.playPiano();
+    dog.printName();
+
+
+
+  </script>
+</body>
+</html>

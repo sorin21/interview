@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Prototype Pattern</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <script>
+    /* Prototype Pattern il folosim pentru a extinde un obiect
+      si/sau pentru a suprascrie metodele oferite userului sau adauga altele
+    */
+
+    const Car = function(type) {
+      this.type = type;
+    }
+
+    Car.prototype.design = function (color) {
+      return ' has color ' + color;
+    }
+
+    const myCar = new Car('Dacia');
+    const design = myCar.design('red');
+    console.log(myCar.type + design);
+  </script>
+</body>
+</html>

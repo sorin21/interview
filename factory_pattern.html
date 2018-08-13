@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Factory Pattern</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <script>
+    /* Factory Pattern creeaza un obiect si il returneaza.
+    */
+
+    const Car = function() {
+      var car = {};
+      car.running = false;
+      car.toggleEngine = function() {
+        this.running = !this.running;
+        console.log('Car is running: ' + this.running);
+      }
+      return car;
+    }
+
+    const car1 = Car();
+    car1.toggleEngine();
+    car1.toggleEngine();
+    car1.running = 'undefined';
+    car1.toggleEngine();
+  </script>
+</body>
+</html>
