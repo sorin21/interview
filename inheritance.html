@@ -12,69 +12,50 @@
       Toate obiectele in Javascript mostenesc  proprietati  si metode  de la un prototype.
       Obiectele Date mostenesc de la Date.prototype, obiectele Array  mostenesc de la Array.prototype.
      */
-    function Mother() {
-      this.canSwim = function() {
-        console.log('yes');
-      }
-    }
 
-    function Son() {};
+    function Mother() {
+      this.fistName = 'Maria';
+      this.canSwim = function() {
+        console.log('Can swim');
+      }
+      this.printName = function() {
+        console.log("My name is " + this.fistName);
+      }
+
+    }
+    
+    const mother = new Mother();
+    // mother.printName();
+
+    function Son(){
+      this.firstName = 'Andrei';
+      this.canRun = function() {
+        console.log('Can run');
+      }
+    };
 
     Son.prototype = new Mother();
-    Son.prototype.canRun = function() {
-      console.log('yes');
+    
+    Son.prototype.printName = function() {
+      console.log('His name is ' + this.firstName);
     }
-
-    function Grandson() {
-      this.name = "Alex";
-    };
-    Grandson.prototype = new Son();
-    Grandson.prototype.playPiano = function() {
-      console.log('no');
-    }
-    Grandson.prototype.printName = function() {
-      console.log("Grandson's name is " + this.name);
-    }
-
-    var grandson = new Grandson();
-    grandson.canSwim();
-    grandson.canRun();
-    grandson.playPiano();
-    grandson.printName();
-
-
-
-
-
-
-    ////////// 2nd option //////////
+    const son = new Son();
+    son.canRun();
+    son.canSwim();
+    son.printName();
 
     const inheritsFrom = function(child, parent) {
       child.prototype = Object.create(parent.prototype);
     }
 
-    function Dog() {
-      this.name = 'Azorel';
-      this.canDance = function() {
-        console.log('yes');
-      }
+    function Son2() {};
+    inheritsFrom(Son2, Mother);
+
+    const son2 = new Son2();
+    Son2.prototype.canSwim = function() {
+      console.log('Son2 can not swim');
     }
-    
-    inheritsFrom(Dog, Grandson);
-
-    Dog.prototype.printName = function() {
-      // Grandson.prototype.printName.call(this);
-      console.log("Dog's name is " + this.name);
-    }
-
-    const dog = new Dog();
-    dog.canDance();
-    dog.canRun();
-    dog.playPiano();
-    dog.printName();
-
-
-
+    son2.canSwim();
   </script>
 </body>
 </html>
