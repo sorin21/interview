@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Singleton Pattern</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <script>
+    /* 
+      Singleton pattern defineste metoda getInstance() 
+      care returneaza o singura instanta
+    */
+    var Singleton = (function () {
+      var instance;
+
+      function createInstance() {
+        var object = new Object("I am the instance");
+        return object;
+      }
+
+      return {
+        getInstance: function () {
+          if (!instance) {
+            instance = createInstance();
+          }
+          return instance;
+        }
+      };
+    })();
+
+    function run() {
+
+      var instance1 = Singleton.getInstance();
+      var instance2 = Singleton.getInstance();
+
+      alert("Same instance? " + (instance1 === instance2));
+    }
+  </script>
+</body>
+
+</html>
